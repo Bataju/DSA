@@ -1,11 +1,11 @@
 #include<iostream>
-const int MAX = 5;
+const int MAX = 50;
 
 using namespace std;
 
 class Stack{
     private:
-        int array[MAX];
+        char array[MAX];
         int top;
     public:
         Stack()
@@ -35,17 +35,21 @@ class Stack{
                 array[++top]=item;
             }
         }
-        int pop()
+        char pop()
         {
             if(isEmpty())
             {
                 cout<<"Stack empty, no more pop"<<endl;
-                return 0;
+                exit(0);
             }
             else
             {
                 return array[top--];
             }
+        }
+        char stackTop()
+        {
+            return array[top];
         }
         void display()
         {
@@ -57,27 +61,27 @@ class Stack{
         }
 };
 
-int main()
-{
-    Stack s;
-    s.push(1);
-    s.push(2);
-    s.push(3);
-    s.push(4);
-    s.push(5);
-    s.push(6);//should bring error full
+// int main()
+// {
+//     Stack s;
+//     s.push(1);
+//     s.push(2);
+//     s.push(3);
+//     s.push(4);
+//     s.push(5);
+//     s.push(6);//should bring error full
 
-    s.display();
+//     s.display();
 
-    s.pop();
+//     s.pop();
 
-    s.display();
-    s.pop();
-    s.pop();
-    s.pop();
-    s.pop();
-    s.pop();//error empty
+//     s.display();
+//     s.pop();
+//     s.pop();
+//     s.pop();
+//     s.pop();
+//     s.pop();//error empty
 
-    s.display();
-    return 0;
-}
+//     s.display();
+//     return 0;
+// }
