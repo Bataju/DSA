@@ -3,9 +3,10 @@ const int MAX = 50;
 
 using namespace std;
 
+template <class T>
 class Stack{
     private:
-        char array[MAX];
+        T array[MAX];
         int top;
     public:
         Stack()
@@ -14,17 +15,11 @@ class Stack{
         }
         bool isFull()
         {
-            if(top == MAX -1)
-                return true;
-            else
-                return false;
+            return (top>=MAX-1);
         }
         bool isEmpty()
         {
-            if(top==-1)
-                return true;
-            else 
-                return false;
+            return top==-1;
         }
         void push(int item)
         {
@@ -35,7 +30,7 @@ class Stack{
                 array[++top]=item;
             }
         }
-        char pop()
+        T pop()
         {
             if(isEmpty())
             {
@@ -47,7 +42,7 @@ class Stack{
                 return array[top--];
             }
         }
-        char stackTop()
+        T stackTop()
         {
             return array[top];
         }

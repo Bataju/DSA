@@ -18,7 +18,7 @@ int precedence(char op)
 
 string infix2postfix(string str)
 {
-    Stack s;
+    Stack<char> s;
     string result="";
     char poppedItem;
     for(int i=0; i<str.length(); i++)
@@ -36,7 +36,7 @@ string infix2postfix(string str)
                 poppedItem = s.pop();
                 result=result+poppedItem;
             }
-            s.pop();
+            s.pop();//pop (
         }
         else if(s.stackTop()=='(' || s.isEmpty())//if stack is empty or stack top is ( push any operator
             s.push(str[i]);

@@ -27,7 +27,7 @@ int precedence(char op)
 string infix2prefix(string str)
 {
     str = reverse(str);
-    Stack s;
+    Stack<char> s;
     string result="";
     char poppedItem;
     for(int i=0; i<str.length(); i++)

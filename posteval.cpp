@@ -2,20 +2,20 @@
 #include <ctype.h>
 #include<string>
 #include<cmath>
-#include"stackint.cpp"
+#include"stack.cpp"
 using namespace std;
 
 int postfixevaluator(string expr)
 {
     int op1, op2, result=0;
-    Stack s;
+    Stack<int> s;
     for(int i=0; i<expr.length(); i++)
     {
         if(expr[i]==' ')
             continue;
         if(isalnum(expr[i]))
         {
-            s.push(int(expr[i])-48);//ascii for 0 is 48
+            s.push(int(expr[i])-int('0'));//ascii for 0 is 48
         }
         else 
         {
