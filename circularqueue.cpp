@@ -58,7 +58,7 @@ class Queue
                 cout<<endl<<"Dequeued "<<element<<"."<<endl;
                 if(front==rear)
                 {
-                    front = rear = -1;
+                    front = rear = -1;//reset
                 }
                 else
                     front = (front+1)%MAX; //CIRCULAR
