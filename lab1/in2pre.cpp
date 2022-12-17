@@ -33,11 +33,11 @@ string infix2prefix(string str)
     for(int i=0; i<str.length(); i++)
     {
         if(str[i]==' ')
-            continue;//skip white spaces
+            continue;
         if(isalnum(str[i]))
             result=result+str[i];
-        else if(str[i]==')')
-            s.push(')');
+        else if(str[i]==')' || s.stackTop()==')' || s.isEmpty())
+            s.push(str[i]);
         else if(str[i]=='(')
         {
             while(s.stackTop() != ')')
@@ -47,9 +47,15 @@ string infix2prefix(string str)
             }
             s.pop();
         }
-        else if(s.stackTop()==')' || s.isEmpty())//if stack is empty or stack top is ) push any operator
+        else if((precedence(str[i])==precedence(s.stackTop())) && str[i]=='^')//r to l
+        {
+            poppedItem=s.pop();
+            result=result+poppedItem;
             s.push(str[i]);
-        else if(precedence(str[i])<precedence(s.stackTop()))
+        }
+        else if(precedence(str[i])>=precedence(s.stackTop()))
+            s.push(str[i]);
+        else
         {
             while (!s.isEmpty())
             {
@@ -60,14 +66,6 @@ string infix2prefix(string str)
             } 
             s.push(str[i]);
         }
-        else if(s.stackTop()=='^' && str[i]=='^')//r to l
-        {
-            poppedItem=s.pop();
-            result=result+poppedItem;
-            s.push(str[i]);
-        }
-        else//precedence(str[i])>=precedence(s.stackTop())
-            s.push(str[i]);
     }
     while(!s.isEmpty())
     {

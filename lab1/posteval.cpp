@@ -15,7 +15,7 @@ int postfixevaluator(string expr)
             continue;
         if(isalnum(expr[i]))
         {
-            s.push(int(expr[i])-int('0'));//ascii for 0 is 48
+            s.push(int(expr[i])-int('0'));//else ascii value of the number will be pushed
         }
         else 
         {

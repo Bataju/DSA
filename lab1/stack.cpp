@@ -21,13 +21,14 @@ class Stack{
         {
             return top==-1;
         }
-        void push(int item)
+        void push(T item)
         {
             if(isFull())
                 cout<<"Stack full, "<<item<<" couldn't be pushed"<<endl;
             else
             {
                 array[++top]=item;
+                cout<<"Pushed "<<item<<endl;
             }
         }
         T pop()
@@ -39,6 +40,7 @@ class Stack{
             }
             else
             {
+                cout<<"Popped "<<array[top]<<endl;
                 return array[top--];
             }
         }
@@ -58,25 +60,23 @@ class Stack{
 
 // int main()
 // {
-//     Stack s;
-//     s.push(1);
-//     s.push(2);
-//     s.push(3);
-//     s.push(4);
-//     s.push(5);
-//     s.push(6);//should bring error full
-
+//     Stack<int> s;
+//     int n;
+//     char ch;
+//     do
+//     {
+//         cout<<"Enter number to be pushed: ";
+//         cin>>n;
+//         s.push(n);
+//         cout<<"Continue? ['y' or 'n']: ";
+//         cin>>ch;
+//     } while (ch != 'n' && ch != 'N');
 //     s.display();
-
-//     s.pop();
-
-//     s.display();
-//     s.pop();
-//     s.pop();
-//     s.pop();
-//     s.pop();
-//     s.pop();//error empty
-
+//     while(!s.isEmpty())
+//     {
+//         s.pop();
+//     }
+//     cout<<"After popping..."<<endl;
 //     s.display();
 //     return 0;
 // }
