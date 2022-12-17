@@ -17,20 +17,16 @@ class Queue{
         }
         bool isFull()
         {
-            if(rear==MAX-1)
-                return true;
-            else    
-                return false;
+            return(rear>=MAX-1);
         }
         bool isEmpty()
         {
-            if(front==rear)
-                return true;
-            else    
-                return false;
+            return(front==-1);
         }
         void enque(int item)
         {
+            if(front==-1)
+                front=0;
             if(isFull())
             {
                 cout<<"Queue full, couldn't enqueue "<<item<<endl;
@@ -51,22 +47,22 @@ class Queue{
             }
             else
             {
-                element = array[++front];
+                element = array[front];
                 cout<<"Dequeued "<<element<<endl;
-//when only one element (i.e. last element) is only left to dequeue
-//front==rear==max-1, reset the queue i.e. front=rear=-1
-                if((front == MAX-1) && (rear==MAX-1))//front==rear
+                if(front == rear)//front=rear=max-1
                 {
                     front = rear = -1;
                     cout<<endl<<"Reseting the queue again...."<<endl;
                 }
+                else
+                    front++;
                 return element;
             }
         }
         void display()
         {
             cout<<"Queue elements"<<endl;
-            for(int i=front+1; i<=rear; i++)
+            for(int i=front; i<=rear; i++)
             {
                 cout<<array[i]<<endl;
             }

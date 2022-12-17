@@ -1,93 +1,79 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 const int MAX = 5;
 
 class Queue
 {
-    private:
-        int array[MAX];
-        int front;
-        int rear;
+private:
+    int array[MAX];
+    int front;
+    int rear;
 
-    public:
-        Queue()
+public:
+    Queue()
+    {
+        front = rear = -1;
+    }
+    bool isFull()
+    {
+        return ((front == 0 && rear == MAX - 1) || front == rear + 1);
+    }
+    bool isEmpty()
+    {
+        return (front == -1);
+    }
+    void enqueue(int item)
+    {
+        if (isFull())
+            cout << "Queue full, couldn't enqueue " << item << endl;
+        else
         {
-            front = rear = -1;
+            if (front == -1)
+            {
+                front = 0;
+            }
+            rear = (rear + 1) % MAX;
+            array[rear] = item;
+            cout << "Enqueued " << item << "." << endl;
         }
-        bool isFull()
+    }
+    int dequeue()
+    {
+        int element;
+        if (isEmpty())
         {
-            if((front==0 && rear==MAX-1) || front==rear+1)
-                return true;
+            cout << "Queue empty, couldn't dequeue" << endl;
+            return -1;
+        }
+        else
+        {
+            element = array[front];
+            cout << "Dequeued " << element << "." << endl;
+            if (front == rear)
+            {
+                front = rear = -1; // reset
+            }
             else
-                return false;
+                front = (front + 1) % MAX; // CIRCULAR
         }
-        bool isEmpty()
+        return element;
+    }
+    void display()
+    {
+        int i;
+        cout << "Front: " << front << endl;
+        ;
+        cout << "Rear: " << rear << endl;
+        cout << "Queue elements.." << endl;
+        if (front != -1)
         {
-            if(front==-1)
-                return true;
-            else
-                return false;
+            for (i = front; i != rear; i = (i + 1) % MAX)
+            {
+                cout << array[i] << endl;
+            }
+            cout << array[i] << endl;
         }
-        void enqueue(int item)
-        {
-            if(isFull())
-                cout<<endl<<"Queue full, couldn't enqueue "<<item<<endl;
-            else
-            {
-                if(front==-1)
-                {
-                    front = 0;
-                }
-                
-                rear=(rear+1)%MAX;
-                array[rear] = item;
-                cout<<endl<<"Enqueued "<<item<<"."<<endl;
-            }
-        }
-        int dequeue()
-        {
-            int element;
-            if(isEmpty())
-            {
-                cout<<endl<<"Queue empty, couldn't dequeue"<<endl;
-                return -1;
-            }
-            else
-            {
-                element = array[front];
-                cout<<endl<<"Dequeued "<<element<<"."<<endl;
-                if(front==rear)
-                {
-                    front = rear = -1;//reset
-                }
-                else
-                    front = (front+1)%MAX; //CIRCULAR
-            }
-            return element;
-        }
-        void display()
-        {
-            int i;
-            for(int j=0; j<20; j++)
-            {
-                cout<<"__";
-            }
-            cout<<endl<<"Front: "<<front<<endl;;
-            cout<<"Rear: "<<rear<<endl;
-            cout<<"Queue elements.."<<endl;
-            if(front!=-1)//to prevent from printing value at array[-1] when queue is empty
-            {
-                for(i=front; i!=rear; i=(i+1)%MAX)
-                {
-                    cout<<array[i]<<endl;
-                }
-                cout<<array[i]<<endl;
-            }
-            for(int j=0; j<20; j++)
-            {
-                cout<<"__";
-            }
-        }
+    }
 };
 
 int main()
