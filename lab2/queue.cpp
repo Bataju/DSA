@@ -62,9 +62,14 @@ class Queue{
         void display()
         {
             cout<<"Queue elements"<<endl;
-            for(int i=front; i<=rear; i++)
+            if(front==-1 && rear==-1)
+                cout<<"Empty"<<endl;
+            else
             {
-                cout<<array[i]<<endl;
+                for(int i=front; i<=rear; i++)
+                {
+                    cout<<array[i]<<endl;
+                }
             }
         }
 };
