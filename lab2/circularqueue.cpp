@@ -51,10 +51,10 @@ public:
             cout << "Dequeued " << element << "." << endl;
             if (front == rear)
             {
-                front = rear = -1; // reset
+                front = rear = -1;
             }
             else
-                front = (front + 1) % MAX; // CIRCULAR
+                front = (front + 1) % MAX;
         }
         return element;
     }
@@ -62,10 +62,11 @@ public:
     {
         int i;
         cout << "Front: " << front << endl;
-        ;
         cout << "Rear: " << rear << endl;
-        cout << "Queue elements.." << endl;
-        if (front != -1)
+        cout << "Queue elements" << endl;
+        if(front==rear && front==-1)
+            cout<<"Empty"<<endl;
+        else
         {
             for (i = front; i != rear; i = (i + 1) % MAX)
             {
@@ -80,24 +81,24 @@ int main()
 {
     Queue q;
     q.dequeue();
+
     q.enqueue(1);
     q.enqueue(2);
     q.enqueue(3);
     q.enqueue(4);
     q.enqueue(5);
+
+    q.display();
+
+    q.dequeue();
+
     q.enqueue(6);
-    q.display();
+    
+    q.dequeue();
+    q.dequeue();
+    q.dequeue();
+    q.dequeue();
 
-    q.dequeue();
-    q.dequeue();
-    q.dequeue();
-    q.enqueue(7);
-    q.display();
-
-    q.dequeue();
-    q.dequeue();
-    q.display();
-    q.dequeue();
     q.display();
     return 0;
 }

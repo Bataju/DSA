@@ -23,7 +23,7 @@ class Queue{
         {
             return(front==-1);
         }
-        void enque(int item)
+        void enqueue(int item)
         {
             if(front==-1)
                 front=0;
@@ -75,27 +75,24 @@ int main()
 
     q.dequeue();
 
-    q.enque(1);
-    q.enque(2);
-    q.enque(3);
-    q.enque(4);
-    q.enque(5);
+    q.enqueue(1);
+    q.enqueue(2);
+    q.enqueue(3);
+    q.enqueue(4);
+    q.enqueue(5);
 
     q.display();
 
-    q.enque(6);
+    q.dequeue();
+
+    q.enqueue(6);
 
     q.dequeue();
-    q.dequeue();
-    q.enque(7);//limitation of linear queue
-//queue has empty spaces but we can't enque
-//once queue is filled, even if we deque, no new elements can be added
-   
     q.dequeue();
     q.dequeue();
     q.dequeue();
 
-    q.enque(8);//after reset
+    q.enqueue(8);
     q.display();
     return 0;
 } 

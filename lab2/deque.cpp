@@ -49,8 +49,8 @@ public:
         {
             if (rear == -1)
             {
-                rear = 0;
-                front = 0;
+                rear = MAX-1;
+                front = MAX-1;
             }
             else if (front == 0)
                 front = MAX - 1;
@@ -74,7 +74,7 @@ public:
             cout << "Deleted " << element << " from rear end."<<endl;
             if (front == rear)
             {
-                front = rear = -1; // reset
+                front = rear = -1;
                 cout << "Deque reset." << endl;
             }
             else
@@ -83,7 +83,7 @@ public:
                     rear = MAX - 1;
                 else
                     rear--;
-            } // CIRCULAR
+            }
         }
         return element;
     }
@@ -101,7 +101,7 @@ public:
             cout << "Deleted " << element << " from front."<<endl;
             if (front == rear)
             {
-                front = rear = -1; // reset
+                front = rear = -1;
                 cout << "Deque reset." << endl;
             }
             else
@@ -110,7 +110,7 @@ public:
                     front = 0;
                 else
                     front++;
-            } // CIRCULAR
+            }
         }
         return element;
     }
@@ -119,14 +119,16 @@ public:
         int i;
         cout << "Front: " << front << endl;
         cout << "Rear: " << rear << endl;
-        cout << "Queue elements.." << endl;
-        if (front != -1) // don't display for empty deque
+        cout << "Queue elements" << endl;
+        if(front==rear)
+            cout<<"Empty"<<endl;
+        else
         {
             for (i = front; i != rear; i = (i + 1) % MAX)
             {
                 cout << array[i] << endl;
             }
-            cout << array[i] << endl; // for rear
+            cout << array[i] << endl;
         }
     }
 };
@@ -134,16 +136,14 @@ public:
 int main()
 {
     Deque d;
-    d.insertrear(1);
-    d.insertrear(2);
-    d.insertrear(3);
-    d.insertrear(4);
-    d.insertrear(5);
-
+    d.insertfront(1);
+    d.insertfront(2);
+    d.insertfront(3);
+    d.insertfront(4);
+    d.insertrear(6);
+    d.display();
     d.deletefront();
-    d.insertfront(6);
-    d.deleterear();
-    d.deleterear();
+    d.deletefront();
     d.deleterear();
     d.deleterear();
     d.deleterear();
