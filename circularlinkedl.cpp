@@ -1,34 +1,42 @@
 #include <iostream>
 using namespace std;
 
-struct node
+template <class T>
+class node
 {
-    int value;
-    node *next;
+    public:
+        T value;
+        node *next;
 };
 
+template <class T>
 class CircularLinkedList
 {
 private:
-    node *head;
+    node<T>* head;
 
 public:
     CircularLinkedList()
     {
         head = NULL;
     }
-    void insertAtEnd(int item)
+    node<T>* createNewNode(T item)
     {
-        node *newNode = new node;
+        node<T> *newNode = new node<T>;
         if (newNode == NULL)
             throw("Couldn't allocate space for new node.");
         newNode->value = item;
         newNode->next = NULL;
+        return newNode;
+    }
+    void insertAtEnd(T item)
+    {
+        node<T>* newNode = createNewNode(item);
         if (head == NULL)
             head = newNode;
         else
         {
-            node *temp = head;
+            node<T> *temp = head;
             while (temp->next != head)
                 temp = temp->next;
             temp->next = newNode;
@@ -36,24 +44,25 @@ public:
         newNode->next = head;
         cout << "Inserted " << item << " at the end." << endl;
     }
-    void insertAtFront(int item)
+    void insertAtFront(T item)
     {
-        node *newNode = new node;
-        node *temp = head;
-        if (newNode == NULL)
-            throw("Couldn't allocate space for new node.");
-        newNode->value = item;
+        node<T> *newNode = createNewNode(item);
+        if (head == NULL)
+            head = newNode;
+        else
+        {
+            node<T>* temp = head;
+            while (temp->next != head)
+                temp = temp->next;
+            temp->next = newNode;
+        }
         newNode->next = head;
-        while (temp->next != head)
-            temp = temp->next;
-        temp->next = newNode;
         head = newNode;
         cout << "Inserted " << item << " at the front." << endl;
     }
-    int deleteFromEnd()
+    T deleteFromEnd()
     {
-        int item;
-        node *temp = head;
+        T item;
         if (head == NULL)
             throw("List is empty, couln't delete item from the end.");
         if (head->next == head)
@@ -64,21 +73,24 @@ public:
         }
         else
         {
-            while (temp->next->next != head)
+            node<T> *temp = head;
+            node<T> *preTemp = temp;
+            while (temp->next != head)
             {
+                preTemp = temp;
                 temp = temp->next;
             }
-            item = temp->next->value;
-            delete temp->next;
-            temp->next = head;
+            item = temp->value;
+            preTemp->next = head;
+            delete temp;
         }
         cout << "Deleted " << item << " from the end." << endl;
         return item;
     }
-    int deleteFromFront()
+    T deleteFromFront()
     {
-        int item;
-        node *temp = head;
+        T item;
+        node<T> *temp = head;
         if (head == NULL)
             throw("List is empty, couln't delete item from the end.");
         if (head->next == head)
@@ -103,7 +115,7 @@ public:
     }
     void display()
     {
-        node *temp = head;
+        node<T> *temp = head;
         if (head == NULL)
             cout << "Empty.." << endl;
         else
@@ -121,7 +133,7 @@ public:
 
 int main()
 {
-    CircularLinkedList c;
+    CircularLinkedList<int> c;
     try
     {
         c.display();
