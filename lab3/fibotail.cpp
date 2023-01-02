@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-int fiboTail(int n, int a=0, int b=1)
+long long int fiboTail(int n, long long int a=0, long long int b=1)
 {
     if(n==1)
         return a;

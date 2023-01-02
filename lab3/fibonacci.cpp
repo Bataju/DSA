@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-int fibo(int n)
+long long int fibo(int n)
 {
     if(n==1)
         return 0;

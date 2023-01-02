@@ -15,6 +15,6 @@ void towersOfHanoi(int n, char source, char destination, char auxillary)
 
 int main()
 {
-    towersOfHanoi(5, 'A', 'B', 'C');//a source b destination c auxillary
+    towersOfHanoi(3, 'A', 'B', 'C');//a source b destination c auxillary
     return 0;
 }
